@@ -1,0 +1,54 @@
+<div class="container mt-5 bg-white">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card-body text-center">
+                <span class="title">{{title | uppercase}}</span>
+                <button class="btn btn-success float-end" routerLink="/create-product">new</button>
+
+                <table *ngIf="listProducts.length > 0"class="table table-striped mt-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Ubication</th>
+                        <th scope="col">Price</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <ng-container *ngFor='let product of listProducts'>
+                      <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.ubication }}</td>
+                        <td>{{ product.price | currency: 'USD' }}</td>
+                        <td>
+                          <i [routerLink]="['/edit-product', product._id]" class="fas fa-regular fa-pen-to-square text-primary"></i>
+                          <i (click)="deleteProduct(product._id)" class="fas fa-solid fa-trash text-danger"></i>
+                        </td>
+                     
+                      </tr>
+                      <!-- <tr>
+                        <td>Corn</td>
+                        <td>Cereal</td>
+                        <td>Idaho</td>
+                        <td>3.99</td>
+                        <td><i class="fas fa-regular fa-pen-to-square text-primary"></i>
+                            <i class="fas fa-solid fa-trash text-danger"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>WaterMelon</td>
+                        <td>Fruit</td>
+                        <td>California</td>
+                        <td>4.99</td>
+                        <td><i class="fas fa-regular fa-pen-to-square text-primary"></i>
+                            <i class="fas fa-solid fa-trash text-danger"></i>
+                        </td>
+                      </tr>-->
+                    </ng-container> 
+                  </table>
+                  <h5 style="text-align:start; margin:10px;" *ngIf="listProducts.length == 0">Not products availables to list in</h5>
+            </div>
+        </div>
+    </div>
+</div>
